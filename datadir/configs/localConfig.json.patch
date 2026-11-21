@@ -1,0 +1,58 @@
+[
+  {
+    "op": "add",
+    "path": "/initialState/defaultState/catalog/default/services/geoserver_local_wms",
+    "value": {
+      "url": "http://localhost:8097/geoserver/wms",
+      "type": "wms",
+      "title": "GeoServer MapStore (PostGIS) - WMS",
+      "autoload": true
+    }
+  },
+  {
+    "op": "add",
+    "path": "/initialState/defaultState/catalog/default/services/geoserver_local_wmts",
+    "value": {
+      "url": "http://localhost:8097/geoserver/gwc/service/wmts",
+      "type": "wmts",
+      "title": "GeoServer MapStore (PostGIS) - WMTS",
+      "autoload": false
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/initialState/defaultState/catalog/default/selectedService",
+    "value": "geoserver_local_wms"
+  },
+  {
+    "op": "replace",
+    "path": "/privacy/policyVersion",
+    "value": "what-ais-2026-11"
+  },
+  {
+    "op": "add",
+    "path": "/privacy/links",
+    "value": {
+      "cookie": {
+        "fr-FR": "/pages/mentions.html#cookies",
+        "en-US": "/pages/mentions.html#en-cookies"
+      },
+      "privacy": {
+        "fr-FR": "/pages/mentions.html#confidentialite",
+        "en-US": "/pages/mentions.html#en-privacy"
+      },
+      "terms": {
+        "fr-FR": "/pages/mentions.html#conditions",
+        "en-US": "/pages/mentions.html#en-terms"
+      }
+    }
+  },
+  {
+    "op": "remove",
+    "path": "/plugins/dashboard/24"
+  },
+  {
+    "op": "remove",
+    "path": "/plugins/geostory/5"
+  }
+]

@@ -1,0 +1,20 @@
+# Secrets : générés en local par configurer.py
+.env
+datadir/geostore-datasource-ovr.properties
+
+# Polices Microsoft (Segoe UI), copiées de Windows par configurer.py
+fonts/*.ttf
+fonts/*.otf
+
+# Adresses propres à l'instance (écrites par 03_publier_mapstore.py)
+projets/what_ais/adresses.json
+
+# Sauvegardes et fichiers de travail
+*.backup
+*.dump
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.claude/
+Thumbs.db

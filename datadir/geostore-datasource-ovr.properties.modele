@@ -1,0 +1,14 @@
+# Base interne de MapStore (GeoStore) sur le PostgreSQL de la machine hôte.
+# Fichier modèle : configurer.py écrit geostore-datasource-ovr.properties à côté, avec le mot de passe
+# MAPSTORE_DB_PASSWORD du fichier .env. Ne pas versionner le fichier généré.
+# Lu au démarrage depuis le datadir (-Ddatadir.location=/usr/local/tomcat/datadir).
+geostoreDataSource.driverClassName=org.postgresql.Driver
+geostoreDataSource.url=jdbc:postgresql://host.docker.internal:5432/mapstore
+geostoreDataSource.username=mapstore
+geostoreDataSource.password={MAPSTORE_DB_PASSWORD}
+geostoreVendorAdapter.databasePlatform=org.hibernate.dialect.PostgreSQLDialect
+# "update" : MapStore crée lui-même ses tables au premier démarrage et les migre aux mises à jour
+geostoreEntityManagerFactory.jpaPropertyMap[hibernate.hbm2ddl.auto]=update
+geostoreEntityManagerFactory.jpaPropertyMap[hibernate.default_schema]=geostore
+geostoreVendorAdapter.generateDdl=true
+geostoreVendorAdapter.showSql=false

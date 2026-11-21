@@ -1,0 +1,64 @@
+# Pile MapStore
+#   MapStore  : http://localhost:8097/mapstore/      (compte "admin", mot de passe initial dans .env -> à changer)
+#   GeoServer : http://localhost:8097/geoserver/     GeoServer dédié à MapStore (admin : mot de passe dans .env),
+#               servi sous la même origine que MapStore : pas de CORS à configurer.
+#   Bases     : PostgreSQL 15 / PostGIS 3.5 de la machine hôte, jointes via host.docker.internal:5432
+#               - "mapstore"  : base interne de MapStore (cartes, contextes, utilisateurs), schéma "geostore"
+#               - "what_ais_carto" : couches publiées du projet What AIS doesn't show, schéma "carto"
+#               (voir sql\ et datadir\geostore-datasource-ovr.properties)
+name: mapstore
+
+services:
+  mapstore:
+    image: geosolutionsit/mapstore2:2026.03.00
+    container_name: mapstore
+    environment:
+      # Crée le compte "admin" au démarrage s'il n'existe pas (mot de passe dans .env)
+      INITIAL_ADMIN_PASSWORD: ${MAPSTORE_ADMIN_PASSWORD}
+    volumes:
+      # Configuration externalisée : connexion PostgreSQL + patch du catalogue
+      - ./datadir:/usr/local/tomcat/datadir
+    extra_hosts:
+      # Docker Desktop le fournit déjà ; nécessaire sous Linux
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  geoserver:
+    image: docker.osgeo.org/geoserver:2.28.6
+    container_name: mapstore-geoserver
+    environment:
+      GEOSERVER_ADMIN_USER: admin
+      GEOSERVER_ADMIN_PASSWORD: ${GEOSERVER_ADMIN_PASSWORD}
+      SKIP_DEMO_DATA: "true"
+      # WPS : agrégations des graphiques et compteurs des tableaux de bord MapStore
+      INSTALL_EXTENSIONS: "true"
+      STABLE_EXTENSIONS: "wps"
+      EXTRA_JAVA_OPTS: "-Xms256m -Xmx1g"
+    volumes:
+      - geoserver_data:/opt/geoserver_data
+      # extensions téléchargées une seule fois
+      - geoserver_libs:/opt/additional_libs
+      # polices des étiquettes (Segoe UI, comme le projet QGIS)
+      - ./fonts:/opt/additional_fonts:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:alpine
+    container_name: mapstore-proxy
+    ports:
+      - "127.0.0.1:8097:80"
+    volumes:
+      - ./nginx/mapstore.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./pages:/usr/share/nginx/pages:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mapstore
+      - geoserver
+    restart: unless-stopped
+
+volumes:
+  geoserver_data:
+  geoserver_libs:

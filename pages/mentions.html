@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions et confidentialité · Ce que l'AIS ne montre pas</title>
+<style>
+  :root { --encre: #1d1d1b; --encre-2: #52514e; --encre-3: #8a877f; --filet: #e3e0da; --fond: #ffffff;
+          --doux: #f6f4f0; --lien: #1f5878; --accent: #eb6834; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--encre);
+         font: 15px/1.6 "Segoe UI", system-ui, -apple-system, Arial, sans-serif; }
+  header { border-bottom: 1px solid var(--filet); }
+  .bandeau { max-width: 820px; margin: 0 auto; padding: 14px 20px; display: flex; gap: 18px;
+             align-items: center; flex-wrap: wrap; }
+  .marque { font-weight: 700; color: var(--encre); text-decoration: none; margin-right: auto; }
+  nav a { color: var(--encre-2); text-decoration: none; font-size: 14px; margin-left: 14px; }
+  nav a:hover, nav a:focus { color: var(--lien); text-decoration: underline; }
+  main { max-width: 820px; margin: 0 auto; padding: 8px 20px 60px; }
+  .surtitre { margin: 28px 0 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+              color: var(--encre-3); }
+  h1 { font-size: 26px; margin: 4px 0 6px; }
+  h2 { font-size: 19px; margin: 36px 0 8px; padding-top: 8px; border-top: 1px solid var(--filet); }
+  h3 { font-size: 15px; margin: 18px 0 4px; }
+  p, li { max-width: 68ch; }
+  a { color: var(--lien); }
+  .chapo { color: var(--encre-2); margin: 0 0 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 8px 0 4px; }
+  th, td { text-align: left; vertical-align: top; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--filet); }
+  th { font-weight: 600; color: var(--encre-2); }
+  code { font: 12.5px Consolas, "Cascadia Mono", monospace; background: var(--doux); padding: 1px 4px;
+         border-radius: 3px; overflow-wrap: anywhere; }
+  .encadre { background: var(--doux); border-left: 3px solid var(--encre-3); padding: 10px 14px; margin: 14px 0; }
+  .langue { margin-top: 56px; }
+  @media (max-width: 560px) { th:nth-child(3), td:nth-child(3) { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="bandeau">
+    <a class="marque" href="/mapstore/#/context/what-ais-doesnt-show">Ce que l'AIS ne montre pas</a>
+    <nav aria-label="Sections">
+      <a href="#cookies">Stockage</a><a href="#confidentialite">Confidentialité</a><a href="#conditions">Conditions</a><a href="#en">English</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <p class="surtitre">Installation MapStore du projet</p>
+  <h1>Mentions et confidentialité</h1>
+  <p class="chapo">Cette installation MapStore présente les cartes, le tableau de bord et les récits du projet
+    <a href="https://github.com/jauresmas/what-ais-doesnt-show" rel="noopener">What AIS doesn't show</a>, un
+    projet personnel de démonstration sur données ouvertes. Elle n'utilise ni mesure d'audience, ni publicité,
+    ni outil optionnel soumis à consentement.</p>
+
+  <h2 id="cookies">Stockage dans le navigateur</h2>
+  <p>Aucun cookie de suivi n'est déposé. MapStore n'écrit dans le stockage local du navigateur que ce qui est
+    nécessaire à son fonctionnement :</p>
+  <table>
+    <thead><tr><th>Clé</th><th>Rôle</th><th>Durée</th></tr></thead>
+    <tbody>
+      <tr><td><code>mapstore.privacy.notice</code></td><td>Retenir que l'avis de confidentialité a été fermé.
+        Ce n'est pas un consentement.</td><td>180 jours</td></tr>
+      <tr><td><code>mapstore.persistence.security</code></td><td>Session de l'administrateur après connexion.
+        Les visiteurs n'ont pas besoin de compte.</td><td>Jusqu'à la déconnexion</td></tr>
+      <tr><td><code>credentialStorage</code>, <code>queryParams</code></td><td>Données techniques de l'onglet
+        (service protégé, paramètres d'une carte intégrée).</td><td>Fermeture de l'onglet</td></tr>
+    </tbody>
+  </table>
+  <p>Vous pouvez effacer ces données à tout moment depuis les réglages de votre navigateur.</p>
+
+  <h2 id="confidentialite">Confidentialité</h2>
+  <h3>Ce qui est servi par cette installation</h3>
+  <p>Les cartes, le fond « terres et mer », les couches et les fiches viennent du serveur de l'installation
+    (MapStore, GeoServer et PostgreSQL/PostGIS). Comme tout serveur web, le serveur frontal garde un journal
+    technique des requêtes : adresse IP, adresse demandée, date et navigateur. Ce journal reste sur la machine
+    qui héberge l'installation et ne sert qu'au diagnostic.</p>
+  <h3>Fonds de carte tiers</h3>
+  <p>Le fond affiché par défaut est servi localement. Si vous choisissez un autre fond (CARTO Positron,
+    Esri Océans ou OpenStreetMap), votre navigateur télécharge les tuiles directement chez ce fournisseur, qui
+    reçoit alors votre adresse IP et les informations habituelles d'une requête web, selon sa propre politique.</p>
+  <h3>Données présentées</h3>
+  <p>Les couches sont calculées à partir de données ouvertes (AIS de l'Autorité maritime danoise, limites
+    maritimes, câbles et pipelines, détections radar Global Fishing Watch). Les navires sont pseudonymisés :
+    aucun numéro MMSI, nom ni indicatif réel n'est publié, et aucune donnée ne concerne les équipages.</p>
+
+  <h2 id="conditions">Conditions d'utilisation</h2>
+  <ul>
+    <li><b>Nature des indicateurs.</b> Les signaux (silences inexpliqués, MMSI partagés, passages lents,
+      rencontres, détections radar sans AIS) décrivent des écarts au comportement attendu. Ce ne sont ni des
+      infractions, ni des accusations : aucun navire n'est mis en cause.</li>
+    <li><b>Licences.</b> Les détections radar <i>Powered by Global Fishing Watch</i> sont sous CC BY-NC 4.0 :
+      l'ensemble est réservé à un usage non commercial. Les autres sources et leurs licences sont citées dans la
+      présentation de la carte et dans le dépôt.</li>
+    <li><b>Sans garantie.</b> Les résultats sont fournis pour la démonstration et la discussion, sans garantie
+      d'exactitude ni d'exhaustivité ; la méthode et le rapport qualité sont publiés avec le code.</li>
+    <li><b>Réutilisation.</b> Citez la source (« What AIS doesn't show ») et les fournisseurs de données.</li>
+  </ul>
+
+  <div class="langue" id="en" lang="en">
+    <p class="surtitre">English</p>
+    <h1>Notice and privacy</h1>
+    <p class="chapo">This MapStore installation presents the maps, dashboard and stories of
+      <a href="https://github.com/jauresmas/what-ais-doesnt-show" rel="noopener">What AIS doesn't show</a>, a
+      personal demonstration project on open data. It uses no analytics, no advertising and no optional tools
+      requiring consent.</p>
+    <h2 id="en-cookies">Browser storage</h2>
+    <p>No tracking cookie is set. MapStore only keeps what it needs in local storage: that the privacy notice was
+      closed (<code>mapstore.privacy.notice</code>, 180 days, not a consent record), the administrator's session
+      after sign-in (<code>mapstore.persistence.security</code>), and tab-scoped technical data
+      (<code>credentialStorage</code>, <code>queryParams</code>). Visitors need no account.</p>
+    <h2 id="en-privacy">Privacy</h2>
+    <p>Maps, the default land-and-sea basemap, layers and feature sheets are served by this installation
+      (MapStore, GeoServer, PostgreSQL/PostGIS). The front web server keeps a technical request log (IP address,
+      URL, date, browser) on the host machine, for troubleshooting only. If you select a third-party basemap
+      (CARTO Positron, Esri Ocean, OpenStreetMap), your browser fetches tiles from that provider directly.
+      Vessels are pseudonymised: no real MMSI, name or call sign is published, and no data concerns crews.</p>
+    <h2 id="en-terms">Terms of use</h2>
+    <p>Indicators flag departures from expected behaviour, not offences; no vessel is accused. Radar detections
+      Powered by Global Fishing Watch are CC BY-NC 4.0, so the whole is for non-commercial use. Results are provided
+      for demonstration and discussion, without warranty. Please credit "What AIS doesn't show" and the data
+      providers.</p>
+  </div>
+</main>
+</body>
+</html>
