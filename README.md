@@ -123,6 +123,11 @@ Comptes : `admin` pour MapStore et pour GeoServer, mots de passe dans `.env`.
 - Seules les couches d'affichage pseudonymisées du dépôt What AIS sont chargées ; aucune donnée à MMSI
   réel n'entre dans la base publiée.
 
+## Licence
+
+Le code, la configuration et la documentation de ce dépôt sont sous licence [MIT](LICENSE). Les données
+cartographiées et les logiciels utilisés gardent leurs propres licences, listées ci-dessous.
+
 ## Données et licences
 
 Les couches publiées viennent de [What AIS doesn't show](https://github.com/jauresmas/what-ais-doesnt-show),
